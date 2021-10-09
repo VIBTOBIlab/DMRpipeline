@@ -64,7 +64,7 @@ rule combine_CpGs:
     params:
         s = scriptFolder + "/combine_CpG_sites.py"
     shell:
-        "python {params.s} -v -o {output} {input}"
+        "python3 {params.s} -v -o {output} {input}"
 
 # Test regions for differential methylation
 ## In params section the tumor groups (T1 and T2) and samples paths of those tumor groups (G1 and G2) are specified:
