@@ -18,10 +18,6 @@ from snakemake.logging import logger
 
 from CookieCutter import CookieCutter
 
-## replace / and whitespace with _ while making stdout and stderr path
-## From Ben Parks @bnprks, https://github.com/bnprks/snakemake-slurm-profile/blob/c967347bbebe123af1533272ae06fa88ba8ec02e/slurm-submit.py#L38
-def file_escape(string):
-    return string.replace("/", "_").replace(" ", "_")
 
 def _convert_units_to_mb(memory):
     """If memory is specified with SI unit, convert to MB"""

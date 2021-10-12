@@ -3,20 +3,9 @@
 Snakemake SLURM submit script.
 """
 from snakemake.utils import read_job_properties
+
 import slurm_utils
 from CookieCutter import CookieCutter
-
-##### Get SnakeMake basedir #####
-## cluster_config is specific to each workflow. Hence, get config path
-## relative to project root or snakemake workflow directory.
-## SMKDIR variable is required BEFORE executing snakemake bash command,
-## and should point to base path to workflow dir.
-import os.path
-
-## Workdir - could be different than workflow dir
-workingdir = os.getcwd()
-
-## Do not emit ant stdout in this script except the very last print statement.
 
 # cookiecutter arguments
 SBATCH_DEFAULTS = CookieCutter.SBATCH_DEFAULTS
@@ -29,7 +18,6 @@ RESOURCE_MAPPING = {
     "mem": ("mem", "mem_mb", "ram", "memory"),
     "mem-per-cpu": ("mem-per-cpu", "mem_per_cpu", "mem_per_thread"),
     "nodes": ("nodes", "nnodes"),
-    "ntasks-per-node": ("ntasks-per-node", "ntasks_per_node", "ntasks")
 }
 
 # parse job
@@ -62,24 +50,7 @@ if ADVANCED_ARGUMENT_CONVERSION:
     sbatch_options = slurm_utils.advanced_argument_conversion(sbatch_options)
 
 # 7) Format pattern in snakemake style
-#sbatch_options = slurm_utils.format_values(sbatch_options, job_properties)
-
-
-# create rule-wildcards based stdout and stderr files
-# From Ben Parks @bnprks, https://github.com/bnprks/snakemake-slurm-profile/blob/c967347bbebe123af1533272ae06fa88ba8ec02e/slurm-submit.py#L41-L51
-if job_properties["type"] == "single":
-    sbatch_options["job-name"] = "snake_" + job_properties["rule"]
-    if len(job_properties["wildcards"]) > 0:
-        sbatch_options["job-name"] += "_" + "_".join([key + "_" + slurm_utils.file_escape(value) for key,value in job_properties["wildcards"].items()])
-    sbatch_options["output"] = os.path.join(workingdir, "logs", "slurm", job_properties["rule"], "") + sbatch_options["job-name"] + "_%j.out"
-    sbatch_options["error"] = os.path.join(workingdir, "logs", "slurm", job_properties["rule"], "") + sbatch_options["job-name"] + "_%j.err"
-elif job_properties["type"] == "group":
-    sbatch_options["job-name"] = "snake_" + job_properties["groupid"]
-    sbatch_options["output"] = os.path.join(workingdir, "logs", "slurm", "") + job_properties["groupid"] + "_%j.out"
-    sbatch_options["error"] = os.path.join(workingdir, "logs", "slurm", "") + job_properties["groupid"] + "_%j.err"
-else:
-    print("Error: slurm-submit.py doesn't support job type {} yet!".format(job_properties["type"]))
-    sys.exit(1)
+sbatch_options = slurm_utils.format_values(sbatch_options, job_properties)
 
 # ensure sbatch output dirs exist
 for o in ("output", "error"):

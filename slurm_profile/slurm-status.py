@@ -17,7 +17,7 @@ cluster = CookieCutter.get_cluster_option()
 
 for i in range(STATUS_ATTEMPTS):
     try:
-        sacct_res = sp.check_output(shlex.split(f"/usr/bin/sacct {cluster} -P -b -j {jobid} -n"))
+        sacct_res = sp.check_output(shlex.split(f"sacct {cluster} -P -b -j {jobid} -n"))
         res = {
             x.split("|")[0]: x.split("|")[1]
             for x in sacct_res.decode().strip().split("\n")
@@ -46,8 +46,7 @@ for i in range(STATUS_ATTEMPTS):
         else:
             time.sleep(1)
 
-#status = res[jobid]
-status = res[jobid].split(" ")[0]
+status = res[jobid]
 
 if status == "BOOT_FAIL":
     print("failed")
