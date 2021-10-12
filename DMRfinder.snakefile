@@ -64,6 +64,7 @@ rule combine_CpGs:
     params:
         s = scriptFolder + "/combine_CpG_sites.py"
     shell:
+        "echo $LD_LIBRARY_PATH; "
         "python3 {params.s} -v -o {output} {input}"
 
 # Test regions for differential methylation
