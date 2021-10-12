@@ -64,8 +64,6 @@ rule combine_CpGs:
     params:
         s = scriptFolder + "/combine_CpG_sites.py"
     shell:
-        "ml purge && ml Python/3.8.6-GCCcore-10.2.0; "
-        "export LD_LIBRARY_PATH='/apps/gent/CO7/skylake-ib/software/Python/3.8.6-GCCcore-10.2.0/lib'; "
         "python3 {params.s} -v -o {output} {input}"
 
 # Test regions for differential methylation
