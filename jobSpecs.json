@@ -1,7 +1,0 @@
-{
-  "sort_samtools" :
-  {
-    "walltime": "01:40:00",
-    "ppn": 4
-  },
-}
