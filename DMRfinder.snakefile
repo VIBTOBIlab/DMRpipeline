@@ -25,7 +25,7 @@ report: "report/workflow.rst"
 
 # check if samples in the nameList are also in the sampleFolder:
 # if yes, replace ID in nameList by sample-path. If not, remove.
-print(samples)
+print(f"this is a test and here are the samples: \n{samples}")
 for sample in samples:
     file_name = os.path.splitext(os.path.basename(sample))[0]
     smapleID = file_name.split('_')[0]
