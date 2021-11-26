@@ -28,6 +28,7 @@ report: "report/workflow.rst"
 for sample in samples:
     file_name = os.path.splitext(os.path.basename(sample))[0]
     smapleID = file_name.split('_')[0]
+    print(smapleID)
     if smapleID in names.values:
          names.replace([smapleID], sample, regex=True, inplace=True)
 path_nameDF = names[names.smapleID.str.contains(sampleFolder)]
