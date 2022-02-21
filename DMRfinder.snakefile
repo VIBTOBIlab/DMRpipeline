@@ -82,5 +82,5 @@ rule find_DMRs:
         G1 = lambda wildcards: str([os.path.splitext(os.path.basename(sample))[0].split('.')[0] for sample in grouped_samples[wildcards.COMBOS.split('-')[0]]]).strip("[]").replace(" ",""),
         G2 = lambda wildcards: str([os.path.splitext(os.path.basename(sample))[0].split('.')[0] for sample in grouped_samples[wildcards.COMBOS.split('-')[1]]]).strip("[]").replace(" ","")
     shell:
-        "ml purge && ml R/3.6.0-intel-2019a; "
+        "ml purge && ml R/4.1.0-foss-2021a; "
         "Rscript {params.s} -i {input} -o {output} -v {params.G1} {params.G2} -n {params.T1},{params.T2}"
