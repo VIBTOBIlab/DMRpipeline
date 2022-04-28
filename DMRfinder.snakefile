@@ -104,7 +104,7 @@ if config["method"] == DSS:
         output:
             outputFolder + "/results{COMBOS}.csv"
         params:
-            s = scriptFolder + "/DMRs_DSS.R"
+            s = scriptFolder + "/DMRs_DSS.R",
             T1 = lambda wildcards: wildcards.COMBOS.split('-')[0],
             T2 = lambda wildcards: wildcards.COMBOS.split('-')[1]
 
