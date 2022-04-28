@@ -51,7 +51,7 @@ for combo in combos:
     combo = '-'.join(combo)
     combo_dict[combo] = G1+G2
 
-if config["method"] == DMRfinder:
+if config["method"] == "DMRfinder":
 
     rule all:
         input:
@@ -87,7 +87,7 @@ if config["method"] == DMRfinder:
             "ml purge && ml R/4.1.2-foss-2021b; "
             "Rscript {params.s} -i {input} -o {output} -v {params.G1} {params.G2} -n {params.T1},{params.T2}"
 
-if config["method"] == DSS:
+if config["method"] == "DSS":
 
     rule all:
         input:
