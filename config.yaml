@@ -1,4 +1,5 @@
 nameList: /scratch/gent/vo/000/gvo00027/vsc42927/refList_age.csv
 sampleFolder: /data/gent/vo/000/gvo00027/vsc42927/bismarkPipeline/methylation_extractor_output/references
-DMRfolder: /scratch/gent/vo/000/gvo00027/vsc42927/DMRfinder
-scriptFolder: /data/gent/vo/000/gvo00027/vsc42927/scripts/DMRfinder/
+outputFolder: /scratch/gent/vo/000/gvo00027/vsc42927/DSS #/scratch/gent/vo/000/gvo00027/vsc42927/DMRfinder
+scriptFolder: /data/gent/vo/000/gvo00027/vsc42927/scripts/DMRpipeline/ #/data/gent/vo/000/gvo00027/vsc42927/scripts/DMRfinder/
+method: DSS #DMRfinder
