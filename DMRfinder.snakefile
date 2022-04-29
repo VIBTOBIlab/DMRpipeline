@@ -99,8 +99,8 @@ if config["method"] == "DSS":
     ## thats why the lambda function in T1 needs to be repeated in G1
     rule find_DMRs:
         input:
-            G1 = lambda wildcards: ','.join(grouped_samples[wildcards.COMBOS.split('-')[0]]),
-            G2 = lambda wildcards: ','.join(grouped_samples[wildcards.COMBOS.split('-')[1]])
+            G1 = lambda wildcards: grouped_samples[wildcards.COMBOS.split('-')[0]]
+            G2 = lambda wildcards: grouped_samples[wildcards.COMBOS.split('-')[1]]
         output:
             outputFolder + "/results{COMBOS}.csv"
         params:
@@ -110,7 +110,7 @@ if config["method"] == "DSS":
 
         shell:
             "ml purge && ml R/4.1.2-foss-2021b; "
-            "Rscript {params.s} -g1 {input.G1} -g2 {input.G2} -n1 {params.T1} -n2 {params.T2} -o {output}"
+            "Rscript {params.s} -g1 '{input.G1}' -g2 '{input.G2}' -n1 {params.T1} -n2 {params.T2} -o {output}"
 
 else:
 

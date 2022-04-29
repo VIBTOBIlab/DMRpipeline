@@ -23,9 +23,9 @@ while (i <= length(args)) {
       usage()
     } else if (i < length(args)) {
       if (args[i] == '-g1') {
-        g1 <- strsplit(gsub("'","",args[i + 1]),",") 
+        g1 <- strsplit(gsub("'","",args[i + 1]),", ") 
       } else if (args[i] == '-g2') {
-        g2 <- strsplit(gsub("'","",args[i + 1]),",")
+        g2 <- strsplit(gsub("'","",args[i + 1]),", ")
       } else if (args[i] == '-n1') {
         n1 <- args[i + 1]
       } else if (args[i] == '-n2') {
