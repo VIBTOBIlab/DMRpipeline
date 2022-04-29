@@ -99,7 +99,7 @@ if config["method"] == "DSS":
     ## thats why the lambda function in T1 needs to be repeated in G1
     rule find_DMRs:
         input:
-            G1 = lambda wildcards: grouped_samples[wildcards.COMBOS.split('-')[0]]
+            G1 = lambda wildcards: grouped_samples[wildcards.COMBOS.split('-')[0]],
             G2 = lambda wildcards: grouped_samples[wildcards.COMBOS.split('-')[1]]
         output:
             outputFolder + "/results{COMBOS}.csv"
