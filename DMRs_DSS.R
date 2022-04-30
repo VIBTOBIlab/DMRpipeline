@@ -79,7 +79,7 @@ print(paste("making a BSseq object of",n1,"against",n2))
 BSobj <- makeBSseqData(grouped.samples,name.lst)
 
 # define amount of cores for parallelisation
-mParam = MulticoreParam(workers=8, progressbar=TRUE)
+mParam = MulticoreParam(workers=17, progressbar=TRUE)
 
 # call DMLs
 print(paste("calculating DMLs of",n1,"against",n2))
