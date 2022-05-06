@@ -109,7 +109,7 @@ if config["method"] == "DSS":
             T2 = lambda wildcards: wildcards.COMBOS.split('-')[1]
 
         shell:
-            "ml purge && ml R/4.1.2-foss-2021b; "
+            "ml purge && ml R/4.2.0-foss-2021b; "
             "Rscript {params.s} -g1 '{input.G1}' -g2 '{input.G2}' -n1 {params.T1} -n2 {params.T2} -o {output}"
 
 else:

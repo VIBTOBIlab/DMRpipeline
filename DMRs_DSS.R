@@ -15,7 +15,7 @@ usage <- function() {
   q()
 }
 
-# get CL args
+# get command line args
 args <- commandArgs(trailingOnly=T)
 i <- 1
 while (i <= length(args)) {
@@ -46,13 +46,14 @@ while (i <= length(args)) {
 
 # load libraries
 library(DSS)
-require(bsseq)
 
 # load files and convert to correct input for DSS
 prep_samples <- function(file){
   s <- read.table(file, col.names = c('chr','pos','stop','beta_perc','X','unmeth'))
   s$N <- s$X + s$unmeth
   s <- s[c('chr','pos','N','X')]
+#  s <- s[sample(nrow(s),10000),]
+#  s <- s[order(s$chr),]
   return(s)
 }
 
@@ -78,13 +79,10 @@ print(paste("making a BSseq object of",n1,"against",n2))
 
 BSobj <- makeBSseqData(grouped.samples,name.lst)
 
-# define amount of cores for parallelisation
-mParam = MulticoreParam(workers=17, progressbar=TRUE)
-
 # call DMLs
 print(paste("calculating DMLs of",n1,"against",n2))
 
-dmlTest <- DMLtest(BSobj, names(g1.samples), names(g2.samples), BPPARAM = mParam)
+dmlTest <- DMLtest(BSobj, names(g1.samples), names(g2.samples), ncores = 10)
 
 # call DMRs
 print(paste("calculating DMRs of",n1,"against",n2))
