@@ -82,11 +82,11 @@ BSobj <- makeBSseqData(grouped.samples,name.lst)
 # call DMLs
 print(paste("calculating DMLs of",n1,"against",n2))
 
-dmlTest <- DMLtest(BSobj, names(g1.samples), names(g2.samples), ncores = 10)
+dmlTest <- DMLtest(BSobj, names(g1.samples), names(g2.samples), ncores = 10, smoothing=TRUE)
 
 # call DMRs
 print(paste("calculating DMRs of",n1,"against",n2))
 
-dmrs <- callDMR(dmlTest, p.threshold = 0.05, delta = 0.05)
+dmrs <- callDMR(dmlTest, p.threshold = 0.01, delta = 0.05)
 
 write.table(dmrs, file = output, sep='\t', col.names = TRUE)
