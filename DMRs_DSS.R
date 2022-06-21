@@ -82,7 +82,7 @@ BSobj <- makeBSseqData(grouped.samples,name.lst)
 # call DMLs
 print(paste("calculating DMLs of",n1,"against",n2))
 
-dmlTest <- DMLtest(BSobj, names(g1.samples), names(g2.samples), ncores = 10, smoothing=TRUE)
+dmlTest <- DMLtest(BSobj, names(g1.samples), names(g2.samples), ncores = 10) #, smoothing=TRUE
 
 # call DMRs
 print(paste("calculating DMRs of",n1,"against",n2))
